@@ -13,12 +13,18 @@ public class Tower implements ITower {
     private final List<IPlaneCrashAlarmButtonListener> planeCrashAlarmButtonListeners;
     private final List<Plane> planes;
     private final List<Runway> runways;
+    private boolean noMorePlanesWantToLand;
+
+    public Tower() {
+        this.fireStations = new ArrayList<>();
+        this.planes = new ArrayList<>();
+        this.runways = new ArrayList<>();
+        this.planeCrashAlarmButtonListeners = new ArrayList<>();
+    }
 
     public boolean isNoMorePlanesWantToLand() {
         return noMorePlanesWantToLand;
     }
-
-    private boolean noMorePlanesWantToLand;
 
     public List<FireStation> getFireStations() {
         return fireStations;
@@ -30,13 +36,6 @@ public class Tower implements ITower {
 
     public List<Runway> getRunways() {
         return runways;
-    }
-
-    public Tower() {
-        this.fireStations = new ArrayList<>();
-        this.planes = new ArrayList<>();
-        this.runways = new ArrayList<>();
-        this.planeCrashAlarmButtonListeners = new ArrayList<>();
     }
 
     public void startLandingProcess() {

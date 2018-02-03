@@ -9,15 +9,21 @@ import java.util.stream.IntStream;
 public class FireStation implements IPlaneCrashAlarmButtonListener {
     private final ITower tower;
     private final List<ITower> disasterButtonListeners;
+    private final List<FireTruck> fireTrucks;
+    private final String id;
+    private IFireTruckMoveOutCommand fireTruckMoveOutCommand;
+    private Runway runway;
+    public FireStation(ITower tower, String id) {
+        this.tower = tower;
+        this.id = id;
+        this.disasterButtonListeners = new ArrayList<>();
+        this.fireTrucks = new ArrayList<>();
+        this.generateFireTrucks();
+    }
 
     public List<FireTruck> getFireTrucks() {
         return fireTrucks;
     }
-
-    private final List<FireTruck> fireTrucks;
-    private IFireTruckMoveOutCommand fireTruckMoveOutCommand;
-    private Runway runway;
-    private final String id;
 
     public Runway getRunway() {
         return runway;
@@ -27,17 +33,8 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         this.runway = runway;
     }
 
-
     public String getId() {
         return id;
-    }
-
-    public FireStation(ITower tower, String id) {
-        this.tower = tower;
-        this.id = id;
-        this.disasterButtonListeners = new ArrayList<>();
-        this.fireTrucks = new ArrayList<>();
-        this.generateFireTrucks();
     }
 
     private void generateFireTrucks() {

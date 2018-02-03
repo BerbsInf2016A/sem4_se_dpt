@@ -31,6 +31,31 @@ public strictfp class MersenneTwisterFast implements Serializable, Cloneable {
     private double __nextNextGaussian;
     private boolean __haveNextNextGaussian;
 
+    /**
+     * Constructor using the default seed.
+     */
+    public MersenneTwisterFast() {
+        this(System.currentTimeMillis());
+    }
+
+    /**
+     * Constructor using a given seed.  Though you pass this seed in
+     * as a long, it's best to make sure it's actually an integer.
+     */
+    public MersenneTwisterFast(long seed) {
+        setSeed(seed);
+    }
+
+    /**
+     * Constructor using an array of integers as seed.
+     * Your array must have a non-zero length.  Only the first 624 integers
+     * in the array are used; if the array is shorter than this then
+     * integers are repeatedly used in a wrap-around fashion.
+     */
+    public MersenneTwisterFast(int[] array) {
+        setSeed(array);
+    }
+
     /* We're overriding all internal data, to my knowledge, so this should be okay */
     public Object clone() {
         try {
@@ -93,33 +118,6 @@ public strictfp class MersenneTwisterFast implements Serializable, Cloneable {
         stream.writeDouble(__nextNextGaussian);
         stream.writeBoolean(__haveNextNextGaussian);
     }
-
-    /**
-     * Constructor using the default seed.
-     */
-    public MersenneTwisterFast() {
-        this(System.currentTimeMillis());
-    }
-
-    /**
-     * Constructor using a given seed.  Though you pass this seed in
-     * as a long, it's best to make sure it's actually an integer.
-     */
-    public MersenneTwisterFast(long seed) {
-        setSeed(seed);
-    }
-
-
-    /**
-     * Constructor using an array of integers as seed.
-     * Your array must have a non-zero length.  Only the first 624 integers
-     * in the array are used; if the array is shorter than this then
-     * integers are repeatedly used in a wrap-around fashion.
-     */
-    public MersenneTwisterFast(int[] array) {
-        setSeed(array);
-    }
-
 
     /**
      * Initalize the pseudo random number generator.  Don't

@@ -6,11 +6,6 @@ import java.util.TimerTask;
 
 public class SimulationTimerTask extends TimerTask {
     private final Tower tower;
-
-    public boolean isTaskEnded() {
-        return taskEnded;
-    }
-
     private boolean taskEnded;
 
     public SimulationTimerTask(Tower tower) {
@@ -18,6 +13,9 @@ public class SimulationTimerTask extends TimerTask {
         this.tower = tower;
     }
 
+    public boolean isTaskEnded() {
+        return taskEnded;
+    }
 
     @Override
     public void run() {

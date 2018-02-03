@@ -4,11 +4,11 @@ import t52airport.Tower;
 
 public class TestTower extends Tower {
 
+    private boolean disasterOccured = false;
+
     public boolean isDisasterOccured() {
         return disasterOccured;
     }
-
-    private boolean disasterOccured = false;
 
     @Override
     public void disasterOccurred(String location, String message) {
