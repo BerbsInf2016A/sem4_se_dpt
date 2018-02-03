@@ -7,19 +7,27 @@ public interface ITower {
      * @param fireStation The firestation which should be registered.
      * @param runway The runway, which the firestation should protect.
      */
-    public void registerFireStation(FireStation fireStation, Runway runway);
+    void registerFireStation(FireStation fireStation, Runway runway);
 
     /**
      * Register a plane at a Tower.
      *
      * @param plane The plane which should be registered.
      */
-    public void registerLandingPlane(Plane plane);
+    void registerLandingPlane(Plane plane);
 
     /**
      * Register a runway at a tower.
      *
      * @param runway The runway which should be registerd.
      */
-    public void registerRunway(Runway runway);
+    void registerRunway(Runway runway);
+
+
+    /**
+     * Call this method if an disaster occurred.
+     *
+     * @param location The location of the disaster.
+     */
+    void disasterOccurred(String location);
 }

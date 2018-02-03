@@ -12,7 +12,7 @@ public class TowerTest {
     public void Tower_registerFireStation_KnownRunway() {
         Tower testee = new Tower();
 
-        Runway runway = new Runway(testee);
+        Runway runway = new Runway(testee, "Testrunway");
         testee.registerRunway(runway);
         FireStation fireStation = new FireStation(testee);
 
@@ -28,7 +28,7 @@ public class TowerTest {
     public void Tower_registerFireStation_UnknownRunway() {
         Tower testee = new Tower();
 
-        Runway runway = new Runway(testee);
+        Runway runway = new Runway(testee, "Testrunway");
 
         FireStation fireStation = new FireStation(testee);
 
@@ -40,7 +40,7 @@ public class TowerTest {
     @Test
     public void Tower_registerLandingPlane() {
         Tower testee = new Tower();
-        Plane plane = new Plane(testee);
+        Plane plane = new Plane(testee, "Testplane", PlaneType.A320);
 
         testee.registerLandingPlane(plane);
 
