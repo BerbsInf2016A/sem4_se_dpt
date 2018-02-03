@@ -37,6 +37,7 @@ public class TowerTest {
         List<FireStation> fireStationList = testee.getFireStations();
         Assert.assertEquals("Firestation should not be added", 0, fireStationList.size());
     }
+
     @Test
     public void Tower_registerLandingPlane() {
         Tower testee = new Tower();
@@ -50,5 +51,28 @@ public class TowerTest {
 
     @Test
     public void Tower_registerRunway() {
+        Tower testee = new Tower();
+
+        Runway runway = new Runway(testee, "Testrunway01");
+        testee.registerRunway(runway);
+
+        runway = new Runway(testee, "Testrunway02");
+        testee.registerRunway(runway);
+
+        List<Runway> runways = testee.getRunways();
+        Assert.assertEquals("Two runways should be added", 2, runways.size());
+    }
+
+    @Test
+    public void Tower_triggerPlaneCrashAlarm() {
+        Tower testee = new Tower();
+
+        Runway runway = new Runway(testee, "Testrunway01");
+        testee.registerRunway(runway);
+
+        runway = new Runway(testee, "Testrunway02");
+        testee.registerRunway(runway);
+
+
     }
 }

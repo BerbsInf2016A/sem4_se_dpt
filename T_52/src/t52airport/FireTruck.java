@@ -1,29 +1,27 @@
 package t52airport;
 
+import t52airport.helpers.Configuration;
 import t52airport.helpers.ResetFireTruckTimerTask;
 
 import java.util.Timer;
 
 public class FireTruck {
-    private String id;
+    private final String id;
     private boolean isInUse;
-    private ResetFireTruckTimerTask resetFireTruckTimerTask;
-    private Timer timer;
+    private final Timer timer;
+    private final String firesStationId;
 
-    public FireTruck(String id) {
+    public FireTruck(String id, String stationId) {
         this.id = id;
         this.isInUse = false;
         this.timer = new Timer();
-        this.resetFireTruckTimerTask = new ResetFireTruckTimerTask(this);
+        this.firesStationId = stationId;
     }
 
     public String getId() {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
 
     public boolean isInUse() {
         return isInUse;
@@ -34,8 +32,11 @@ public class FireTruck {
     }
 
     public void moveOut(Runway runway) {
+        System.out.printf("FireTruck <%s> from FireStation <%s>: Moving out to <%s> to help crashed plane <%s> %n",
+                this.getId(), this.firesStationId, runway.getId(), runway.getPlane().getShortPlaneIdentifier());
         this.setInUse(true);
-       timer.schedule(this.resetFireTruckTimerTask, 1000);
+        ResetFireTruckTimerTask task = new ResetFireTruckTimerTask(this);
+        timer.schedule(task, Configuration.instance.fireTruckInterventionDurationInMilliSeconds);
     }
 
 

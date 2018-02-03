@@ -1,13 +1,13 @@
 package t52airport;
 
-public class Runway  implements  ILandingCommand{
-    private ITower tower;
+public class Runway implements ILandingCommand {
+    private final ITower tower;
 
     public String getId() {
         return id;
     }
 
-    private String id;
+    private final String id;
 
     public Plane getPlane() {
         return plane;
@@ -22,7 +22,7 @@ public class Runway  implements  ILandingCommand{
     }
 
     public void initiateLandingPermission(Runway runway, Plane plane) {
-        if(runway == this) {
+        if (runway == this) {
             this.plane = plane;
         }
     }

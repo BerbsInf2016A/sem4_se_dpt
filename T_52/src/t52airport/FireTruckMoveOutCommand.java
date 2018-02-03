@@ -2,7 +2,7 @@ package t52airport;
 
 public class FireTruckMoveOutCommand implements IFireTruckMoveOutCommand {
 
-    private FireTruck fireTruck;
+    private final FireTruck fireTruck;
 
     public FireTruckMoveOutCommand(FireTruck truck) {
         this.fireTruck = truck;

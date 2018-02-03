@@ -2,24 +2,25 @@ package t52airport;
 
 import org.junit.Assert;
 import org.junit.Test;
+import t52airport.helpers.Configuration;
 
 import java.util.concurrent.TimeUnit;
-
-import static org.junit.Assert.*;
 
 public class FireTruckTest {
 
     @Test
     public void fireTruck_moveOut() {
-        FireTruck testee = new FireTruck("TestFireTruck");
+        FireTruck testee = new FireTruck("TestFireTruck", "FireStation01");
 
         ITower tower = new Tower();
         Runway runway = new Runway(tower, "Testrunway");
+        Plane plane = new Plane(tower, "Plane01", PlaneType.A320);
+        runway.initiateLandingPermission(runway, plane);
 
         testee.moveOut(runway);
         Assert.assertTrue("Firetruck should be in use, after the moveout command", testee.isInUse());
         try {
-            TimeUnit.SECONDS.sleep(2);
+            TimeUnit.MILLISECONDS.sleep(Configuration.instance.fireTruckInterventionDurationInMilliSeconds * 2);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
