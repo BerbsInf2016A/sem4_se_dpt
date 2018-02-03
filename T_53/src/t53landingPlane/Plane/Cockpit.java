@@ -17,7 +17,6 @@ public class Cockpit {
     }
 
     public void descend() {
-        System.out.println("Flaps command initiated!");
         this.command = new SetAllFlapsToThreeDegreeCommand(this.controlUnit);
         this.command.setAllFlaps();
     }

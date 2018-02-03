@@ -6,7 +6,7 @@ public enum Configuration {
     public String planeId = "1";
     public int planeHeight = 100;
     public int planeSpeed = 200;
-    public int planeDistance = 3000;
+    public int planeDistance = 5000;
 
     public int updateIntervalInMilliseconds = 1000;
 }
