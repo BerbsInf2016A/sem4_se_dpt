@@ -5,21 +5,21 @@ import t52airport.helpers.MersenneTwisterFast;
 
 public class Plane implements ILandingCommand {
 
-    private Runway runway;
     private final ITower tower;
+    private final PlaneType type;
+    private final String id;
+    private Runway runway;
+    private boolean isCrashed;
+
+    public Plane(ITower tower, String id, PlaneType type) {
+        this.tower = tower;
+        this.id = id;
+        this.type = type;
+    }
 
     public PlaneType getType() {
         return type;
     }
-
-    private final PlaneType type;
-    private final String id;
-
-    public void setCrashed(boolean crashed) {
-        isCrashed = crashed;
-    }
-
-    private boolean isCrashed;
 
     public String getId() {
         return id;
@@ -28,13 +28,6 @@ public class Plane implements ILandingCommand {
     public String getShortPlaneIdentifier() {
         return String.format("%s <%s>", this.getId(), this.getType());
     }
-
-    public Plane(ITower tower, String id, PlaneType type) {
-        this.tower = tower;
-        this.id = id;
-        this.type = type;
-    }
-
 
     public void initiateLandingPermission(Runway runway, Plane plane) {
         if (plane == this) {
@@ -73,5 +66,9 @@ public class Plane implements ILandingCommand {
 
     public boolean isCrashed() {
         return isCrashed;
+    }
+
+    public void setCrashed(boolean crashed) {
+        isCrashed = crashed;
     }
 }

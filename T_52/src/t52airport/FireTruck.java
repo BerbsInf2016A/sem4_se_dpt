@@ -7,9 +7,9 @@ import java.util.Timer;
 
 public class FireTruck {
     private final String id;
-    private boolean isInUse;
     private final Timer timer;
     private final String firesStationId;
+    private boolean isInUse;
 
     public FireTruck(String id, String stationId) {
         this.id = id;

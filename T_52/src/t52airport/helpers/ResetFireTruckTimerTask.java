@@ -8,7 +8,7 @@ public class ResetFireTruckTimerTask extends TimerTask {
 
     private final FireTruck truck;
 
-    public ResetFireTruckTimerTask(FireTruck truck ){
+    public ResetFireTruckTimerTask(FireTruck truck) {
         this.truck = truck;
     }
 
