@@ -14,7 +14,7 @@ public class TowerTest {
 
         Runway runway = new Runway(testee, "Testrunway");
         testee.registerRunway(runway);
-        FireStation fireStation = new FireStation(testee);
+        FireStation fireStation = new FireStation(testee, "TestFireStation");
 
         testee.registerFireStation(fireStation, runway);
 
@@ -30,7 +30,7 @@ public class TowerTest {
 
         Runway runway = new Runway(testee, "Testrunway");
 
-        FireStation fireStation = new FireStation(testee);
+        FireStation fireStation = new FireStation(testee, "TestFireStation");
 
         testee.registerFireStation(fireStation, runway);
 

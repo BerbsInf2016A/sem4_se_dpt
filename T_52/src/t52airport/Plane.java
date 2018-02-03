@@ -7,8 +7,18 @@ public class Plane implements ILandingCommand {
 
     private Runway runway;
     private ITower tower;
+
+    public PlaneType getType() {
+        return type;
+    }
+
     private PlaneType type;
     private String id;
+
+    public void setCrashed(boolean crashed) {
+        isCrashed = crashed;
+    }
+
     private boolean isCrashed;
 
     public Plane(ITower tower, String id, PlaneType type) {

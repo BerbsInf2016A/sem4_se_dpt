@@ -1078,6 +1078,7 @@ public strictfp class MersenneTwisterFast implements Serializable, Cloneable {
         } while(bits - val + (n-1) < 0);
         return val;
     }
+
     public int nextInt(int minimum,int maximum) {
         return minimum + (int)(nextDouble() * ((maximum - minimum) + 1));
     }
