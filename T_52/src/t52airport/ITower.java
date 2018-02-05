@@ -2,22 +2,22 @@ package t52airport;
 
 public interface ITower {
     /**
-     * Register a fireStation for a runway at a tower.
+     * Register a fire station at the tower and handle all necessary registrations.
      *
-     * @param fireStation The firestation which should be registered.
-     * @param runway      The runway, which the firestation should protect.
+     * @param fireStation The fire station which should be registered.
+     * @param runway      The runway, which the fire station should protect.
      */
     void registerFireStation(FireStation fireStation, Runway runway);
 
     /**
-     * Register a plane at a Tower.
+     * Register a plane at the tower.
      *
      * @param plane The plane which should be registered.
      */
     void registerLandingPlane(Plane plane);
 
     /**
-     * Register a runway at a tower.
+     * Register a runway at the tower.
      *
      * @param runway The runway which should be registerd.
      */

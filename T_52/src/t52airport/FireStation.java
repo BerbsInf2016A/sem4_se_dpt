@@ -6,13 +6,41 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
+/**
+ * Represents a fire station.
+ */
 public class FireStation implements IPlaneCrashAlarmButtonListener {
+    /**
+     * The tower acts as mediator for the fire station.
+     */
     private final ITower tower;
+    /**
+     * Contains all listeners for the disaster button.
+     */
     private final List<ITower> disasterButtonListeners;
+    /**
+     * Contains all fire trucks of the station.
+     */
     private final List<FireTruck> fireTrucks;
+    /**
+     * The id of the fire station.
+     */
     private final String id;
+    /**
+     * A command to send a fire truck out to a plane crash.
+     */
     private IFireTruckMoveOutCommand fireTruckMoveOutCommand;
+    /**
+     * The runway which the fire station protects.
+     */
     private Runway runway;
+
+    /**
+     * Constructor for the fire station.
+     *
+     * @param tower The tower, which acts as mediator for the fire station.
+     * @param id The id of the fire station.
+     */
     public FireStation(ITower tower, String id) {
         this.tower = tower;
         this.id = id;
@@ -21,14 +49,29 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         this.generateFireTrucks();
     }
 
+    /**
+     * Getter for the fire trucks.
+     *
+     * @return A list of fire trucks.
+     */
     public List<FireTruck> getFireTrucks() {
         return fireTrucks;
     }
 
+    /**
+     * Get the runway of the fire station.
+     *
+     * @return The runway.
+     */
     public Runway getRunway() {
         return runway;
     }
 
+    /**
+     * Set the runway of the fire station.
+     *
+     * @param runway The runway to set.
+     */
     public void setRunway(Runway runway) {
         this.runway = runway;
     }
@@ -37,11 +80,43 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         return id;
     }
 
-    private void generateFireTrucks() {
-        IntStream.range(1, 9).forEach(i -> this.fireTrucks.add(new FireTruck("V0" + i, this.id)));
+    /**
+     * Add a disaster button listener.
+     *
+     * @param listener The disaster button listener.
+     */
+    public void addDisasterButtonListener(ITower listener) {
+        this.disasterButtonListeners.add(listener);
     }
 
+    /**
+     * Removes a disaster button listener.
+     *
+     * @param listener The listener to remove.
+     */
+    public void removeDisasterButtonListener(ITower listener) {
+        if (this.disasterButtonListeners.contains(listener)) {
+            this.disasterButtonListeners.remove(listener);
+        }
+    }
 
+    /**
+     * Trigger the disaster alarm.
+     *
+     * @param location The location of the disaster.
+     * @param message The reason for the disaster.
+     */
+    private void triggerDisasterAlarm(String location, String message) {
+        for (ITower tower : this.disasterButtonListeners) {
+            tower.disasterOccurred(location, message);
+        }
+    }
+
+    /**
+     * React to a list of runways with crashed planes
+     *
+     * @param planeCrashes The list of runways with a crashed plane.
+     */
     public void planesCrashed(List<Runway> planeCrashes) {
         for (Runway runway : planeCrashes) {
             if (runway.getId().equalsIgnoreCase(this.runway.getId())) {
@@ -53,17 +128,10 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
-    /*
-    (i) A319: V01, V02;
-    (ii) A320: wie A319 + V03;
-    (iii) A330: wie A320 + V04 und V05;
-    (iv) A350: wie A320 + 2x V06;           support
-    (v) A380: wie A350 + V07 + 2x V08;      support
-    (vi) B737: wie A320;
-    (vii) B747: wie A380; (
-    viii) B777: wie A380 und
-    (ix) B787: wie A350
-
+    /**
+     * Handling the support for the other runway.
+     *
+     * @param runway The runway with the crashed plane.
      */
     private void handleSupportForOtherRunway(Runway runway) {
         switch (runway.getPlane().getType()) {
@@ -85,6 +153,12 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
+    /**
+     * Sending a single fire truck to the other runway.
+     *
+     * @param support The fire truck which should be send.
+     * @param runway The target runway.
+     */
     private void sendSupportToOtherRunway(Optional<FireTruck> support, Runway runway) {
         if (!support.isPresent()) {
             String message = String.format("FireStation <%s>: Can not send support. Truck not found!", this.getId());
@@ -100,6 +174,12 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
+    /**
+     * Sending multiple trucks to the other runway.
+     *
+     * @param support The fire trucks which should be send.
+     * @param runway The target runway.
+     */
     private void sendSupportToOtherRunway(List<FireTruck> support, Runway runway) {
         for (FireTruck truck : support) {
             if (truck.isInUse()) {
@@ -112,6 +192,11 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
+    /**
+     * Handling a plane crash on the own runway.
+     *
+     * @param plane The crashed plane.
+     */
     private void handleOwnRunwayCrash(Plane plane) {
         switch (plane.getType()) {
             case A319:
@@ -151,6 +236,11 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
+    /**
+     * Sending fire trucks out to the own runway.
+     *
+     * @param trucks The trucks to send out.
+     */
     private void sendFireTrucksToOwnRunway(List<FireTruck> trucks) {
         for (FireTruck truck : trucks) {
             if (truck.isInUse()) {
@@ -163,19 +253,11 @@ public class FireStation implements IPlaneCrashAlarmButtonListener {
         }
     }
 
-    public void addDisasterButtonListener(ITower listener) {
-        this.disasterButtonListeners.add(listener);
+    /**
+     * Generating the fire trucks for the station.
+     */
+    private void generateFireTrucks() {
+        IntStream.range(1, 9).forEach(i -> this.fireTrucks.add(new FireTruck("V0" + i, this.id)));
     }
 
-    public void removeDisasterButtonListener(ITower listener) {
-        if (this.disasterButtonListeners.contains(listener)) {
-            this.disasterButtonListeners.remove(listener);
-        }
-    }
-
-    public void triggerDisasterAlarm(String location, String message) {
-        for (ITower tower : this.disasterButtonListeners) {
-            tower.disasterOccurred(location, message);
-        }
-    }
 }

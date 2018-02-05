@@ -1,5 +1,8 @@
 package t52airport;
 
+/**
+ * Containing the different types of planes.
+ */
 public enum PlaneType {
     A319,
     A320,

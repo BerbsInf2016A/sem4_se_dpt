@@ -11,6 +11,9 @@ import java.util.stream.Collectors;
 
 public class FireStationTest {
 
+    /**
+     * The fire station should trigger the disaster alarm, if necessary.
+     */
     @Test
     public void fireStation_DisasterAlarm_Triggered() {
         TestTower tower = new TestTower();
@@ -46,6 +49,9 @@ public class FireStationTest {
 
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a A319.
+     */
     @Test
     public void planesCrashed_ownRunway_A319() {
         ITower tower = new Tower();
@@ -67,6 +73,9 @@ public class FireStationTest {
         Assert.assertTrue("A319 V02 should move out", usedFireTruckIds.contains("V02"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a A320.
+     */
     @Test
     public void planesCrashed_ownRunway_A320() {
         ITower tower = new Tower();
@@ -89,6 +98,9 @@ public class FireStationTest {
         Assert.assertTrue("A320 V02 should move out", usedFireTruckIds.contains("V03"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a B737.
+     */
     @Test
     public void planesCrashed_ownRunway_B737() {
         ITower tower = new Tower();
@@ -111,6 +123,9 @@ public class FireStationTest {
         Assert.assertTrue("B737 V02 should move out", usedFireTruckIds.contains("V03"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a A330.
+     */
     @Test
     public void planesCrashed_ownRunway_A330() {
         ITower tower = new Tower();
@@ -134,6 +149,9 @@ public class FireStationTest {
         Assert.assertTrue("A330 V02 should move out", usedFireTruckIds.contains("V05"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a A350.
+     */
     @Test
     public void planesCrashed_sendSupport_A350() {
         ITower tower = new Tower();
@@ -169,6 +187,9 @@ public class FireStationTest {
         Assert.assertTrue("A350 V06 from support fire station runway should move out", usedSupportFireTruckIds.contains("V06"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a B787.
+     */
     @Test
     public void planesCrashed_sendSupport_B787() {
         ITower tower = new Tower();
@@ -204,6 +225,9 @@ public class FireStationTest {
         Assert.assertTrue("B787 V06 from support fire station runway should move out", usedSupportFireTruckIds.contains("V06"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a A380.
+     */
     @Test
     public void planesCrashed_sendSupport_A380() {
         ITower tower = new Tower();
@@ -242,6 +266,9 @@ public class FireStationTest {
         Assert.assertTrue("A380 V08 from support fire station runway should move out", usedSupportFireTruckIds.contains("V08"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a B747.
+     */
     @Test
     public void planesCrashed_sendSupport_B747() {
         ITower tower = new Tower();
@@ -280,6 +307,9 @@ public class FireStationTest {
         Assert.assertTrue("B747 V08 from support fire station runway should move out", usedSupportFireTruckIds.contains("V08"));
     }
 
+    /**
+     * Testing the fire station reaction in case of a crash of a B777.
+     */
     @Test
     public void planesCrashed_sendSupport_B777() {
         ITower tower = new Tower();
@@ -317,5 +347,4 @@ public class FireStationTest {
         Assert.assertTrue("B777 V06 from support fire station runway should move out", usedSupportFireTruckIds.contains("V06"));
         Assert.assertTrue("B777 V08 from support fire station runway should move out", usedSupportFireTruckIds.contains("V08"));
     }
-
 }

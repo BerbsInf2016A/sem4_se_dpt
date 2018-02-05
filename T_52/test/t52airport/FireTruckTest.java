@@ -8,6 +8,9 @@ import java.util.concurrent.TimeUnit;
 
 public class FireTruckTest {
 
+    /**
+     * The fire truck should be blocked for a short duration after it received the move out command.
+     */
     @Test
     public void fireTruck_moveOut() {
         FireTruck testee = new FireTruck("TestFireTruck", "FireStation01");
