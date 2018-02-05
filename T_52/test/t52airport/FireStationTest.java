@@ -42,7 +42,7 @@ public class FireStationTest {
         firstFireStation.planesCrashed(crashedPlanes);
         supportStation.planesCrashed(crashedPlanes);
 
-        Assert.assertTrue("Disaster should be messaged to the tower", tower.isDisasterOccured());
+        Assert.assertTrue("Disaster should be messaged to the tower", tower.isDisasterOccurred());
 
     }
 
