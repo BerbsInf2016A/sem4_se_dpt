@@ -9,7 +9,7 @@ public class WingTest {
 
     @Test
     public void Wing_MoveLeftFlap() {
-        Wing wing = new Wing(null);
+        Wing wing = new Wing();
         final double wingFlapAngle = 21;
 
         wing.moveLeftFlap(wingFlapAngle);
@@ -19,7 +19,7 @@ public class WingTest {
 
     @Test
     public void Wing_MoveRightFlap() {
-        Wing wing = new Wing(null);
+        Wing wing = new Wing();
         final double wingFlapAngle = 21;
 
         wing.moveRightFlap(wingFlapAngle);
@@ -29,7 +29,7 @@ public class WingTest {
 
     @Test
     public void Wing_MoveAllWingFlaps() {
-        Wing wing = new Wing(null);
+        Wing wing = new Wing();
         final double wingFlapAngle = 21;
 
         wing.moveAllWingFlaps(wingFlapAngle);

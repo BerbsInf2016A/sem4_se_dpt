@@ -12,12 +12,10 @@ import java.util.Timer;
  * Class representing the Control Unit of the plane.
  */
 public class ControlUnit implements IControlUnit {
-
     /**
      * The timer.
      */
     private Timer timer;
-
     /**
      * The left wing.
      */
@@ -47,7 +45,6 @@ public class ControlUnit implements IControlUnit {
      * The plane distance.
      */
     private double planeDistance;
-
     /**
      * Boolean indicating if the plane is descending.
      */
@@ -58,8 +55,8 @@ public class ControlUnit implements IControlUnit {
      */
     public ControlUnit() {
         this.planePositionDataListeners = new ArrayList<>();
-        this.registerLeftWing(new Wing(this));
-        this.registerRightWing(new Wing(this));
+        this.registerLeftWing(new Wing());
+        this.registerRightWing(new Wing());
 
         this.planeSpeed = Configuration.instance.planeSpeed;
         this.planeHeight = Configuration.instance.planeHeight;
