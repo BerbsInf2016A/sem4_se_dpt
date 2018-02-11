@@ -14,12 +14,10 @@ public class Tower implements IPlanePositionDataListener {
      * The current plane that needs to land.
      */
     private Plane currentPlane;
-
     /**
      * Boolean indicating if the descend command has already been send.
      */
     private boolean descendCommandIsSent = false;
-
     /**
      * Set the current plane.
      * @param currentPlane The current plane.
@@ -38,8 +36,8 @@ public class Tower implements IPlanePositionDataListener {
      */
     public void positionDataUpdate(double speed, double height, double distance, String id) {
         if(this.isDescendPointReached(height, distance) && !this.descendCommandIsSent) {
-            System.out.printf("Plane is descending - Distance: %.1f & Height: %.1f%n", distance, height);
             this.sendDescendCommand();
+            System.out.printf("Plane is descending - Distance: %.1f & Height: %.1f%n", distance, height);
             this.descendCommandIsSent = true;
         }
     }
@@ -52,10 +50,7 @@ public class Tower implements IPlanePositionDataListener {
      */
     public boolean isDescendPointReached(double height, double distance) {
         final double degreesNeededToDescend = 3;
-        if(height/distance >= Math.sin(Math.toRadians(degreesNeededToDescend))) {
-            return true;
-        }
-        return false;
+        return height / distance >= Math.sin(Math.toRadians(degreesNeededToDescend));
     }
 
     /**

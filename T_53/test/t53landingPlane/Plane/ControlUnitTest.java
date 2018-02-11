@@ -40,7 +40,7 @@ public class ControlUnitTest {
         controlUnit.updatePositionData();
 
         final double expectedSpeed = Configuration.instance.planeSpeed;
-        final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.updateIntervalInMilliseconds/1000.0));
+        final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.planePositionUpdateInterval /1000.0));
         final double expectedHeight = Configuration.instance.planeHeight;
 
         Assert.assertEquals("Should have the speed value from the Configuration!", expectedSpeed, planePositionDataListener.getSpeed(), 0.001);
@@ -50,14 +50,12 @@ public class ControlUnitTest {
 
     @Test
     public void ControlUnit_CheckingIfTheObserverListenerIsRemoved() {
-        ControlUnit controlUnit = new ControlUnit();
+        IControlUnit controlUnit = new ControlUnit();
         MockPlanePositionDataListener planePositionDataListener = new MockPlanePositionDataListener();
 
         controlUnit.addPlanePositionDataListener(planePositionDataListener);
         controlUnit.removePlanePositionDataListener(planePositionDataListener);
-        controlUnit.updatePositionData();
 
-        Assert.assertTrue("List off listeners should be empty!", controlUnit.getPlanePositionDataListeners().size() == 0);
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getSpeed() == 0);
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getHeight()== 0);
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getDistance() == 0);
@@ -67,6 +65,9 @@ public class ControlUnitTest {
     public void ControlUnit_moveAllFlaps() {
         ControlUnit controlUnit = new ControlUnit();
         final double expectedAngle = 17;
+
+        controlUnit.registerLeftWing(new Wing(controlUnit));
+        controlUnit.registerRightWing(new Wing(controlUnit));
 
         controlUnit.moveAllFlaps(17);
 

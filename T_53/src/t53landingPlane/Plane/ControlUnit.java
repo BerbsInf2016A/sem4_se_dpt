@@ -55,8 +55,6 @@ public class ControlUnit implements IControlUnit {
      */
     public ControlUnit() {
         this.planePositionDataListeners = new ArrayList<>();
-        this.registerLeftWing(new Wing());
-        this.registerRightWing(new Wing());
 
         this.planeSpeed = Configuration.instance.planeSpeed;
         this.planeHeight = Configuration.instance.planeHeight;
@@ -65,16 +63,8 @@ public class ControlUnit implements IControlUnit {
         this.isDescending = false;
 
         this.timer = new Timer();
-        this.timer.scheduleAtFixedRate(new ConsoleOutputTimerTask(this), 0, Configuration.instance.updateIntervalFocConsoleOutputInMilliseconds);
-        this.timer.scheduleAtFixedRate(new PositionUpdateTimerTask(this), 0, Configuration.instance.updateIntervalInMilliseconds);
-    }
-
-    /**
-     * Get the plane position data listeners.
-     * @return The plane position data listeners.
-     */
-    public ArrayList<IPlanePositionDataListener> getPlanePositionDataListeners() {
-        return planePositionDataListeners;
+        this.timer.scheduleAtFixedRate(new ConsoleOutputTimerTask(this), 0, Configuration.instance.consoleInformationUpdateInterval);
+        this.timer.scheduleAtFixedRate(new PositionUpdateTimerTask(this), 0, Configuration.instance.planePositionUpdateInterval);
     }
 
     /**
@@ -110,11 +100,7 @@ public class ControlUnit implements IControlUnit {
         rightWing.moveAllWingFlaps(degree);
         System.out.println("Moving Wing Flaps!");
 
-        if (degree > 0 ) {
-            this.isDescending = true;
-        } else {
-            this.isDescending = false;
-        }
+        this.isDescending = degree > 0;
     }
 
     /**
@@ -155,7 +141,7 @@ public class ControlUnit implements IControlUnit {
      * Calculates the plane position data.
      */
     private void calculatePositionData() {
-        this.planeDistance = this.planeDistance - (this.planeSpeed * (Configuration.instance.updateIntervalInMilliseconds / 1000.0));
+        this.planeDistance = this.planeDistance - (this.planeSpeed * (Configuration.instance.planePositionUpdateInterval / 1000.0));
         if(this.isDescending) {
             this.planeHeight = this.planeDistance * Math.sin(Math.toRadians(3));
         }

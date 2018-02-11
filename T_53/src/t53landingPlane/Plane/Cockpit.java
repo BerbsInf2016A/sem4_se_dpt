@@ -11,21 +11,31 @@ public class Cockpit {
     /**
      * The control unit.
      */
-    private ControlUnit controlUnit;
+    private IControlUnit controlUnit;
 
     /**
      * Constructor for the cockpit.
      */
     public Cockpit() {
         this.controlUnit = new ControlUnit();
+        this.controlUnit.registerLeftWing(new Wing(this.controlUnit));
+        this.controlUnit.registerRightWing(new Wing(this.controlUnit));
     }
 
     /**
      * Get the control unit.
-     * @return
+     * @return The control unit.
      */
-    public ControlUnit getControlUnit() {
+    public IControlUnit getControlUnit() {
         return controlUnit;
+    }
+
+    /**
+     * Get the command.
+     * @return The command.
+     */
+    public ISetAllFlapsCommand getCommand() {
+        return command;
     }
 
     /**

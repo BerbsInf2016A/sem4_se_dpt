@@ -5,6 +5,10 @@ package t53landingPlane.Plane;
  */
 public class Wing implements IMoveAllWingFlapsCommand {
     /**
+     * The control unit.
+     */
+    private IControlUnit controlUnit;
+    /**
      * The left flap of the wing.
      */
     private Flap leftFlap;
@@ -16,7 +20,8 @@ public class Wing implements IMoveAllWingFlapsCommand {
     /**
      * Constructor for the Wing.
      */
-    public Wing() {
+    public Wing(IControlUnit controlUnit) {
+        this.controlUnit = controlUnit;
         this.leftFlap = new Flap();
         this.rightFlap = new Flap();
     }

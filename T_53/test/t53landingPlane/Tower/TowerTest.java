@@ -3,8 +3,7 @@ package t53landingPlane.Tower;
 import org.junit.Assert;
 import org.junit.Test;
 import t53landingPlane.Plane.Plane;
-
-import static org.junit.Assert.*;
+import t53landingPlane.Plane.SetAllFlapsToThreeDegreeCommand;
 
 public class TowerTest {
 
@@ -17,13 +16,7 @@ public class TowerTest {
         tower.setCurrentPlane(plane);
         tower.sendDescendCommand();
 
-        final int expectedDescendingAngle = 3;
-
-        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getLeftWing().getLeftFlap().getCurrentAngle());
-        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getLeftWing().getRightFlap().getCurrentAngle());
-        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getRightWing().getLeftFlap().getCurrentAngle());
-        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getRightWing().getRightFlap().getCurrentAngle());
-
+        Assert.assertTrue("Command should be set to move flaps!", plane.getCockpit().getCommand() instanceof SetAllFlapsToThreeDegreeCommand);
     }
 
     @Test
