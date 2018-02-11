@@ -15,9 +15,10 @@ public class PositionUpdateTimerTask extends TimerTask {
 
     /**
      * The Constructor of the Position Update Timer Task.
+     *
      * @param controlUnit The Control Unit
      */
-    public PositionUpdateTimerTask(ControlUnit controlUnit ){
+    public PositionUpdateTimerTask(ControlUnit controlUnit) {
         this.controlUnit = controlUnit;
     }
 

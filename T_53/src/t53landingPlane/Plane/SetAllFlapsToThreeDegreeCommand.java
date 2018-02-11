@@ -11,6 +11,7 @@ public class SetAllFlapsToThreeDegreeCommand implements ISetAllFlapsCommand {
 
     /**
      * The Set All Flaps To Three Degree command.
+     *
      * @param controlUnit The control unit.
      */
     public SetAllFlapsToThreeDegreeCommand(ControlUnit controlUnit) {

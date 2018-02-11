@@ -9,6 +9,51 @@ import static org.junit.Assert.assertTrue;
 
 public class ControlUnitTest {
 
+    @Test
+    public void ControlUnit_CheckingIfTheObserverListenerIsAdded() {
+        ControlUnit controlUnit = new ControlUnit();
+        MockPlanePositionDataListener planePositionDataListener = new MockPlanePositionDataListener();
+
+        controlUnit.addPlanePositionDataListener(planePositionDataListener);
+        controlUnit.updatePositionData();
+
+        final double expectedSpeed = Configuration.instance.planeSpeed;
+        final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.updateIntervalInMilliseconds / 1000.0));
+        final double expectedHeight = Configuration.instance.planeHeight;
+
+        assertEquals("Should have the speed value from the Configuration!", expectedSpeed, planePositionDataListener.getSpeed(), 0.001);
+        assertEquals("Should have the height value from the Configuration!", expectedHeight, planePositionDataListener.getHeight(), 0.001);
+        assertEquals("Should have the distance value from the Configuration with a deficit because of the distance calculation!", expectedDistance, planePositionDataListener.getDistance(), 0.001);
+    }
+
+    @Test
+    public void ControlUnit_CheckingIfTheObserverListenerIsRemoved() {
+        ControlUnit controlUnit = new ControlUnit();
+        MockPlanePositionDataListener planePositionDataListener = new MockPlanePositionDataListener();
+
+        controlUnit.addPlanePositionDataListener(planePositionDataListener);
+        controlUnit.removePlanePositionDataListener(planePositionDataListener);
+        controlUnit.updatePositionData();
+
+        assertTrue("List off listeners should be empty!", controlUnit.getPlanePositionDataListeners().size() == 0);
+        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getSpeed() == 0);
+        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getHeight() == 0);
+        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getDistance() == 0);
+    }
+
+    @Test
+    public void ControlUnit_moveAllFlaps() {
+        ControlUnit controlUnit = new ControlUnit();
+        final double expectedAngle = 17;
+
+        controlUnit.moveAllFlaps(17);
+
+        assertEquals("Left Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getLeftWing().getLeftFlap().getCurrentAngle(), 0.001);
+        assertEquals("Left Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getLeftWing().getRightFlap().getCurrentAngle(), 0.001);
+        assertEquals("Right Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getRightWing().getLeftFlap().getCurrentAngle(), 0.001);
+        assertEquals("Right Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getRightWing().getRightFlap().getCurrentAngle(), 0.001);
+    }
+
     private class MockPlanePositionDataListener implements IPlanePositionDataListener {
         private double distance = 0;
         private double speed = 0;
@@ -31,50 +76,5 @@ public class ControlUnitTest {
             this.height = height;
             this.distance = distance;
         }
-    }
-
-    @Test
-    public void ControlUnit_CheckingIfTheObserverListenerIsAdded() {
-        ControlUnit controlUnit = new ControlUnit();
-        MockPlanePositionDataListener planePositionDataListener = new MockPlanePositionDataListener();
-
-        controlUnit.addPlanePositionDataListener(planePositionDataListener);
-        controlUnit.updatePositionData();
-
-        final double expectedSpeed = Configuration.instance.planeSpeed;
-        final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.updateIntervalInMilliseconds/1000.0));
-        final double expectedHeight = Configuration.instance.planeHeight;
-
-        assertEquals("Should have the speed value from the Configuration!", expectedSpeed, planePositionDataListener.getSpeed(), 0.001);
-        assertEquals("Should have the height value from the Configuration!", expectedHeight, planePositionDataListener.getHeight(), 0.001);
-        assertEquals("Should have the distance value from the Configuration with a deficit because of the distance calculation!", expectedDistance, planePositionDataListener.getDistance(), 0.001);
-    }
-
-    @Test
-    public void ControlUnit_CheckingIfTheObserverListenerIsRemoved() {
-        ControlUnit controlUnit = new ControlUnit();
-        MockPlanePositionDataListener planePositionDataListener = new MockPlanePositionDataListener();
-
-        controlUnit.addPlanePositionDataListener(planePositionDataListener);
-        controlUnit.removePlanePositionDataListener(planePositionDataListener);
-        controlUnit.updatePositionData();
-
-        assertTrue("List off listeners should be empty!", controlUnit.getPlanePositionDataListeners().size() == 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getSpeed() == 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getHeight()== 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getDistance() == 0);
-    }
-
-    @Test
-    public void ControlUnit_moveAllFlaps() {
-        ControlUnit controlUnit = new ControlUnit();
-        final double expectedAngle = 17;
-
-        controlUnit.moveAllFlaps(17);
-
-        assertEquals("Left Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getLeftWing().getLeftFlap().getCurrentAngle(), 0.001);
-        assertEquals("Left Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getLeftWing().getRightFlap().getCurrentAngle(),0.001);
-        assertEquals("Right Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getRightWing().getLeftFlap().getCurrentAngle(),0.001);
-        assertEquals("Right Wing should have moved to the expected Angle!", expectedAngle, controlUnit.getRightWing().getRightFlap().getCurrentAngle(),0.001);
     }
 }

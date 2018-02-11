@@ -22,6 +22,7 @@ public class Cockpit {
 
     /**
      * Get the control unit.
+     *
      * @return
      */
     public ControlUnit getControlUnit() {
@@ -30,6 +31,7 @@ public class Cockpit {
 
     /**
      * Sets the set all flaps command.
+     *
      * @param command The set all flaps command.
      */
     public void setCommand(ISetAllFlapsCommand command) {

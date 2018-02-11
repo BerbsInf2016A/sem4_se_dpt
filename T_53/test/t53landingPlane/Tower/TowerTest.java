@@ -4,8 +4,6 @@ import org.junit.Assert;
 import org.junit.Test;
 import t53landingPlane.Plane.Plane;
 
-import static org.junit.Assert.*;
-
 public class TowerTest {
 
     @Test
@@ -19,10 +17,10 @@ public class TowerTest {
 
         final int expectedDescendingAngle = 3;
 
-        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getLeftWing().getLeftFlap().getCurrentAngle());
-        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getLeftWing().getRightFlap().getCurrentAngle());
-        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getRightWing().getLeftFlap().getCurrentAngle());
-        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int)plane.getCockpit().getControlUnit().getRightWing().getRightFlap().getCurrentAngle());
+        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int) plane.getCockpit().getControlUnit().getLeftWing().getLeftFlap().getCurrentAngle());
+        Assert.assertEquals("Left Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int) plane.getCockpit().getControlUnit().getLeftWing().getRightFlap().getCurrentAngle());
+        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int) plane.getCockpit().getControlUnit().getRightWing().getLeftFlap().getCurrentAngle());
+        Assert.assertEquals("Right Wing Flaps should be at an angle of 3 degrees!", expectedDescendingAngle, (int) plane.getCockpit().getControlUnit().getRightWing().getRightFlap().getCurrentAngle());
 
     }
 

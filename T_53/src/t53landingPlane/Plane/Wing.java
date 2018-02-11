@@ -23,6 +23,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Get the left flap.
+     *
      * @return The left flap.
      */
     public Flap getLeftFlap() {
@@ -31,6 +32,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Get the right flap.
+     *
      * @return The right flap.
      */
     public Flap getRightFlap() {
@@ -39,6 +41,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Moves all flaps of the wing to a certain degree.
+     *
      * @param degree The degree to move the flaps.
      */
     public void moveAllWingFlaps(double degree) {
@@ -47,6 +50,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Moves the flaps.
+     *
      * @param degree The degree to move the flaps.
      */
     private void moveFlaps(double degree) {
@@ -56,6 +60,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Moves the left flap of the wing.
+     *
      * @param degree The degree to move the flap.
      */
     public void moveLeftFlap(double degree) {
@@ -64,6 +69,7 @@ public class Wing implements IMoveAllWingFlapsCommand {
 
     /**
      * Moves the right flap of the wing.
+     *
      * @param degree The degree to move the flap.
      */
     public void moveRightFlap(double degree) {
