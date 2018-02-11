@@ -25,6 +25,7 @@ public class Plane {
 
     /**
      * Get the cockpit.
+     *
      * @return The cockpit.
      */
     public Cockpit getCockpit() {

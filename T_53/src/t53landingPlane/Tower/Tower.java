@@ -20,6 +20,7 @@ public class Tower implements IPlanePositionDataListener {
     private boolean descendCommandIsSent = false;
     /**
      * Set the current plane.
+     *
      * @param currentPlane The current plane.
      */
     public void setCurrentPlane(Plane currentPlane) {
@@ -29,10 +30,10 @@ public class Tower implements IPlanePositionDataListener {
 
     /**
      * Updates the position data of the plane.
-     * @param speed The speed of the plane.
-     * @param height The height of the plane.
+     * @param speed    The speed of the plane.
+     * @param height   The height of the plane.
      * @param distance The distance of the plane.
-     * @param id The id of the plane.
+     * @param id       The id of the plane.
      */
     public void positionDataUpdate(double speed, double height, double distance, String id) {
         if(this.isDescendPointReached(height, distance) && !this.descendCommandIsSent) {
@@ -44,7 +45,8 @@ public class Tower implements IPlanePositionDataListener {
 
     /**
      * Calculates if the point is reached, when the plane needs to descend.
-     * @param height The height of the plane.
+     *
+     * @param height   The height of the plane.
      * @param distance The distance of the plane.
      * @return Boolean indicating if the descend point is reached.
      */

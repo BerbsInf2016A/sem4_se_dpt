@@ -11,6 +11,7 @@ public class Flap {
 
     /**
      * Moves the flap to a certain angle.
+     *
      * @param degree The degree to move the flap.
      */
     public void moveToDegree(double degree) {
@@ -19,6 +20,7 @@ public class Flap {
 
     /**
      * Get the current angle.
+     *
      * @return The current angle.
      */
     public double getCurrentAngle() {

@@ -13,6 +13,7 @@ public class DescendCommand implements IDescendCommand {
 
     /**
      * The descend command.
+     *
      * @param plane The plane.
      */
     public DescendCommand(Plane plane) {

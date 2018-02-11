@@ -12,6 +12,7 @@ public class ConsoleOutputTimerTask extends TimerTask {
 
     /**
      * The Constructor of the Console Output Timer Task.
+     *
      * @param controlUnit The Control Unit
      */
     public ConsoleOutputTimerTask(ControlUnit controlUnit) {

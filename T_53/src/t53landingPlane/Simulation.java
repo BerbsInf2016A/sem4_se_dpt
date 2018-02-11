@@ -7,7 +7,7 @@ import t53landingPlane.Tower.Tower;
  * The Simulation for the plane landing.
  */
 public class Simulation {
-    public void run(){
+    public void run() {
         Tower tower = new Tower();
         Plane plane = new Plane();
 

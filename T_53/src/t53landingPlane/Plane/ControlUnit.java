@@ -63,12 +63,14 @@ public class ControlUnit implements IControlUnit {
         this.isDescending = false;
 
         this.timer = new Timer();
+
         this.timer.scheduleAtFixedRate(new ConsoleOutputTimerTask(this), 0, Configuration.instance.consoleInformationUpdateInterval);
         this.timer.scheduleAtFixedRate(new PositionUpdateTimerTask(this), 0, Configuration.instance.planePositionUpdateInterval);
     }
 
     /**
      * Get the left wing.
+     *
      * @return The left wing.
      */
     public Wing getLeftWing() {
@@ -77,6 +79,7 @@ public class ControlUnit implements IControlUnit {
 
     /**
      * Get the right wing.
+     *
      * @return The right wing.
      */
     public Wing getRightWing() {
@@ -85,6 +88,7 @@ public class ControlUnit implements IControlUnit {
 
     /**
      * Adds a plane position data listener.
+     *
      * @param planePositionDataListener The plane position data listener to add.
      */
     public void addPlanePositionDataListener(IPlanePositionDataListener planePositionDataListener) {
@@ -93,18 +97,19 @@ public class ControlUnit implements IControlUnit {
 
     /**
      * Moves all flaps of the plane.
+     *
      * @param degree The degree to move the flaps.
      */
     public void moveAllFlaps(double degree) {
         leftWing.moveAllWingFlaps(degree);
         rightWing.moveAllWingFlaps(degree);
         System.out.println("Moving Wing Flaps!");
-
         this.isDescending = degree > 0;
     }
 
     /**
      * Registers the left wing.
+     *
      * @param wing The left wing.
      */
     public void registerLeftWing(Wing wing) {
@@ -113,6 +118,7 @@ public class ControlUnit implements IControlUnit {
 
     /**
      * Registers the right wing.
+     *
      * @param wing The right wing.
      */
     public void registerRightWing(Wing wing) {
@@ -121,6 +127,7 @@ public class ControlUnit implements IControlUnit {
 
     /**
      * Removes a plane position data listener
+     *
      * @param planePositionDataListener The plane position data listener to remove.
      */
     public void removePlanePositionDataListener(IPlanePositionDataListener planePositionDataListener) {
@@ -132,7 +139,7 @@ public class ControlUnit implements IControlUnit {
      */
     public void updatePositionData() {
         this.calculatePositionData();
-        for(IPlanePositionDataListener planePositionDataListener : this.planePositionDataListeners) {
+        for (IPlanePositionDataListener planePositionDataListener : this.planePositionDataListeners) {
             planePositionDataListener.positionDataUpdate(this.planeSpeed, this.planeHeight, this.planeDistance, this.planeId);
         }
     }
@@ -146,7 +153,7 @@ public class ControlUnit implements IControlUnit {
             this.planeHeight = this.planeDistance * Math.sin(Math.toRadians(3));
         }
 
-        if(this.planeDistance <= 0) {
+        if (this.planeDistance <= 0) {
             this.timer.cancel();
             System.out.println("Plane successfully landed!");
         }
