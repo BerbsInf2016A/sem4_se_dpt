@@ -1,5 +1,6 @@
 package t53landingPlane.Plane;
 
+import org.junit.Assert;
 import org.junit.Test;
 import t53landingPlane.Configuration;
 import t53landingPlane.Tower.IPlanePositionDataListener;
@@ -18,11 +19,7 @@ public class ControlUnitTest {
         controlUnit.updatePositionData();
 
         final double expectedSpeed = Configuration.instance.planeSpeed;
-<<<<<<< HEAD
         final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.planePositionUpdateInterval /1000.0));
-=======
-        final double expectedDistance = Configuration.instance.planeDistance - (expectedSpeed * (Configuration.instance.updateIntervalInMilliseconds / 1000.0));
->>>>>>> c3365d1ce35e4e6da70a0b44940947ff7df22f82
         final double expectedHeight = Configuration.instance.planeHeight;
 
         assertEquals("Should have the speed value from the Configuration!", expectedSpeed, planePositionDataListener.getSpeed(), 0.001);
@@ -38,16 +35,9 @@ public class ControlUnitTest {
         controlUnit.addPlanePositionDataListener(planePositionDataListener);
         controlUnit.removePlanePositionDataListener(planePositionDataListener);
 
-<<<<<<< HEAD
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getSpeed() == 0);
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getHeight()== 0);
         Assert.assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getDistance() == 0);
-=======
-        assertTrue("List off listeners should be empty!", controlUnit.getPlanePositionDataListeners().size() == 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getSpeed() == 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getHeight() == 0);
-        assertTrue("Should have not been set because the listener was removed!", planePositionDataListener.getDistance() == 0);
->>>>>>> c3365d1ce35e4e6da70a0b44940947ff7df22f82
     }
 
     @Test

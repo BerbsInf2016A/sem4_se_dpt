@@ -15,7 +15,7 @@ public class TowerTest {
         plane.getCockpit().getControlUnit().addPlanePositionDataListener(tower);
         tower.setCurrentPlane(plane);
         tower.sendDescendCommand();
-        
+
         Assert.assertTrue("Command should be set to move flaps!", plane.getCockpit().getCommand() instanceof SetAllFlapsToThreeDegreeCommand);
     }
 
