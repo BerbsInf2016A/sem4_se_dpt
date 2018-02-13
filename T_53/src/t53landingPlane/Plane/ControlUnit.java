@@ -6,6 +6,7 @@ import t53landingPlane.PositionUpdateTimerTask;
 import t53landingPlane.Tower.IPlanePositionDataListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 
 /**
@@ -23,7 +24,7 @@ public class ControlUnit implements IControlUnit {
     /**
      * The plane position data listeners.
      */
-    private ArrayList<IPlanePositionDataListener> planePositionDataListeners;
+    private List<IPlanePositionDataListener> planePositionDataListeners;
     /**
      * The right wing.
      */
