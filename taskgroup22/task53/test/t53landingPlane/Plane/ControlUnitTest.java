@@ -1,12 +1,13 @@
 package t53landingPlane.Plane;
 
+
 import org.junit.Assert;
 import org.junit.Test;
 import t53landingPlane.Configuration;
 import t53landingPlane.Tower.IPlanePositionDataListener;
 
 import static junit.framework.TestCase.assertEquals;
-import static org.junit.Assert.assertTrue;
+
 
 public class ControlUnitTest {
 

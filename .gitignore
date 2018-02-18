@@ -4,9 +4,7 @@
 # Log file
 *.log
 
-# Idea files
-T_52/.idea/
-T_53/.idea/
+
 
 # BlueJ files
 *.ctxt
@@ -15,7 +13,6 @@ T_53/.idea/
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.ear
 *.zip
